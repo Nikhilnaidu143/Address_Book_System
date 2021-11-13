@@ -10,8 +10,9 @@ public class Contact_info {
 	long Phone_number;
 	String Email;
 	
-	public Contact_info(String first_name , String last_name, String address , String city, String state, int zip_code , long phone_number, String email) {
-		
+	
+	public Contact_info(String first_name , String last_name, String address ,
+			String city, String state, int zip_code , long phone_number, String email) {	
 		this.First_Name = first_name;
 		this.Last_Name = last_name;
 		this.Address = address;
@@ -22,7 +23,7 @@ public class Contact_info {
 		this.Email = email;
 	}
 	
-
+	// initializing getter and setters
 	public String getFirst_Name() {
 		return First_Name;
 	}
@@ -102,11 +103,16 @@ public class Contact_info {
 		Email = email;
 	}
 
-
+	// returning conatcs 
 	@Override
 	public String toString() {
-		return String.format(getFirst_Name() + " " + getLast_Name() + " " + getAddress() + " " + getCity() + " " + getState() + " " + getZip_code() + " " + getPhone_number() + " " + getEmail());
+		return String.format("First_name :- " + getFirst_Name() + "\n" 
+							+ "Laste_name :- " + getLast_Name() + "\n" 
+							+ "Address :- " + getAddress() + "\n" 
+							+ "City :- " + getCity() + "\n" 
+							+ "State :- " + getState() + "\n" 
+							+ "Zip-code :- " + getZip_code() + "\n" 
+							+ "Phone-number :- " + getPhone_number() + "\n" 
+							+ "Email :- " + getEmail() + "\n\n");
 	}
-	
-	
 }
