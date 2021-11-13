@@ -106,7 +106,7 @@ public class Contact_info {
 	// returning conatcs 
 	@Override
 	public String toString() {
-		return String.format("First_name :- " + getFirst_Name() + "\n" 
+		return String.format("\nFirst_name :- " + getFirst_Name() + "\n" 
 							+ "Laste_name :- " + getLast_Name() + "\n" 
 							+ "Address :- " + getAddress() + "\n" 
 							+ "City :- " + getCity() + "\n" 
