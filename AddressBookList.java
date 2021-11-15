@@ -1,7 +1,6 @@
 package com.Address_book_system;
 
 public class AddressBookList {
-	
 	String userInputBookName;
 
 	// constructor
@@ -9,20 +8,15 @@ public class AddressBookList {
 		this.userInputBookName = userInputBookName;
 	}
 
-
 	public String getUserInputBookName() {
-		return userInputBookName;
+	    return userInputBookName;
 	}
-
 
 	public void setUserInputBookName(String userInputBookName) {
-		this.userInputBookName = userInputBookName;
+	    this.userInputBookName = userInputBookName;
 	}
-	
 	
 	public String toString() {
 		return "Address Book name :- " + userInputBookName + "\n";
 	}
-	
-	
 }
