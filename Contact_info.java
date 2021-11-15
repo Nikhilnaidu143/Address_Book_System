@@ -1,6 +1,7 @@
 package com.Address_book_system;
 
 public class Contact_info {
+	
 	String First_Name;
 	String Last_Name;
 	String Address;
@@ -10,7 +11,7 @@ public class Contact_info {
 	long Phone_number;
 	String Email;
 	
-	// constructor
+	// generated constructor 
 	public Contact_info(String first_name , String last_name, String address ,
 			String city, String state, int zip_code , long phone_number, String email) {	
 		this.First_Name = first_name;
