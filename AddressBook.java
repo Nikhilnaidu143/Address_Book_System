@@ -1,6 +1,7 @@
-package com.Address_book_system;
+package com.addressbooksystem;
 
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class AddressBook {
@@ -55,7 +56,7 @@ public class AddressBook {
 		String name = input.next();
 		
 		for(Contact_info person : contactBook) {
-			if(name.equals(person.First_Name)) {
+			if(name.equals(person.first_Name)) {
 				System.out.print("\nSelect option to edit..."
 						            + " 1.First_name."
 						            + " 2.Last_name."

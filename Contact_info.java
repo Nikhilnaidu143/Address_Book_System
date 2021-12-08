@@ -1,107 +1,107 @@
-package com.Address_book_system;
+package com.addressbooksystem;
 
 public class Contact_info {
 	
-	String First_Name;
-	String Last_Name;
-	String Address;
-	String City;
-	String State;
-	int Zip_code;
-	long Phone_number;
-	String Email;
+	String first_Name;
+	String last_Name;
+	String address;
+	String city;
+	String state;
+	int zip_code;
+	long phone_number;
+	String email;
 	
 	// generated constructor 
 	public Contact_info(String first_name , String last_name, String address ,
 			String city, String state, int zip_code , long phone_number, String email) {	
-		this.First_Name = first_name;
-		this.Last_Name = last_name;
-		this.Address = address;
-		this.City = city;
-		this.State = state;
-		this.Zip_code = zip_code;
-		this.Phone_number = phone_number;
-		this.Email = email;
+		this.first_Name = first_name;
+		this.last_Name = last_name;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip_code = zip_code;
+		this.phone_number = phone_number;
+		this.email = email;
 	}
 	
 	// initializing getter and setters
 	public String getFirst_Name() {
-		return First_Name;
+		return first_Name;
 	}
 
 
 	public void setFirst_Name(String first_Name) {
-		First_Name = first_Name;
+		this.first_Name = first_Name;
 	}
 
 
 	public String getLast_Name() {
-		return Last_Name;
+		return last_Name;
 	}
 
 
 	public void setLast_Name(String last_Name) {
-		Last_Name = last_Name;
+		this.last_Name = last_Name;
 	}
 
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
 
 	public String getCity() {
-		return City;
+		return city;
 	}
 
 
 	public void setCity(String city) {
-		City = city;
+		city = city;
 	}
 
 
 	public String getState() {
-		return State;
+		return state;
 	}
 
 
 	public void setState(String state) {
-		State = state;
+		state = state;
 	}
 
 
 	public int getZip_code() {
-		return Zip_code;
+		return zip_code;
 	}
 
 
 	public void setZip_code(int zip_code) {
-		Zip_code = zip_code;
+		this.zip_code = zip_code;
 	}
 
 
 	public long getPhone_number() {
-		return Phone_number;
+		return phone_number;
 	}
 
 
 	public void setPhone_number(long phone_number) {
-		Phone_number = phone_number;
+		this.phone_number = phone_number;
 	}
 
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	// returning contacts
