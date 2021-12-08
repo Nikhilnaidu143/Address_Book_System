@@ -1,29 +1,29 @@
-package com.Address_book_system;
+package com.addressbooksystem;
 
 public class Contact_info {
-	String First_Name;
-	String Last_Name;
-	String Address;
-	String City;
-	String State;
-	int Zip_code;
-	int Phone_number;
-	String Email;
+	String first_Name;
+	String last_Name;
+	String address;
+	String city;
+	String state;
+	int zip_code;
+	int phone_number;
+	String email;
 	
 	public Contact_info(String fn, String ln, String add, String city, String state, int zip, int ph, String email) {
 		
-		this.First_Name = fn;
-		this.Last_Name = ln;
-		this.Address = add;
-		this.City = city;
-		this.State = state;
-		this.Zip_code = zip;
-		this.Phone_number = ph;
-		this.Email = email;
+		this.first_Name = fn;
+		this.last_Name = ln;
+		this.address = add;
+		this.city = city;
+		this.state = state;
+		this.zip_code = zip;
+		this.phone_number = ph;
+		this.email = email;
 	}
 	
 	public String toString() {
-		return String.format(First_Name + " " + Last_Name + " " + Address + " " + City + " " + State + " " + Zip_code + " " + Phone_number + " " + Email);
+		return String.format(first_Name + " " + last_Name + " " + address + " " + city + " " + state + " " + zip_code + " " + phone_number + " " + email);
 	}
 	
 	
