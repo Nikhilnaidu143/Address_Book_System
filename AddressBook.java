@@ -1,10 +1,13 @@
 package com.addressbooksystem;
 
-import java.util.*;
+import java.util.ArrayList;
+
+import java.util.Scanner;
 
 public class AddressBook {
 	static Scanner input = new Scanner(System.in);
 	static ArrayList<Contact_info> contactBook = new ArrayList<>(); // creating array list of class Contact_info
+	static ArrayList<AddressBookList> addressBookNameList = new ArrayList<>();
 
 	// building add contact feature
 	public void addContact() {
@@ -35,7 +38,7 @@ public class AddressBook {
 		Contact_info contact = new Contact_info(first, last, add, city, state, zip, phone, email);
 		contactBook.add(contact);
 
-		System.out.println("\nContact added Successfully.");
+		System.out.println("\nContact added Successfully.\n");
 	}
 
 	// displaying all existing contacts
@@ -141,7 +144,7 @@ public class AddressBook {
 		}
 	}
 
-	// adding multiple person details feature added.
+	// UC-5:- adding multiple person details feature added.
 	public void addMultiplePersons() {
 		System.out.println("Enter how many contacts you want to add :- ");
 		int userWant = input.nextInt();
@@ -150,6 +153,25 @@ public class AddressBook {
 		}
 	}
 
+	// UC-6:- Ability to add multiple address books to system
+	public void newAddressBook() {
+		System.out.println("Enter Address Book Namw :- ");
+		String userInputBookName = input.next();
+
+		AddressBookList addressBookObj = new AddressBookList(userInputBookName);
+		addressBookNameList.add(addressBookObj);
+
+		System.out.println("New Address Book Name is added to list.");
+	}
+
+	// display address book
+	public void displayAddressBook() {
+		for (AddressBookList addressBookName : addressBookNameList) {
+			System.out.println(addressBookName.toString());
+		}
+	}
+
+	// main method
 	public static void main(String[] args) {
 		System.out.println("--------------------Welcome To Address Book Program-----------------------");
 		AddressBook obj = new AddressBook();
@@ -163,8 +185,10 @@ public class AddressBook {
 				System.out.println("1.Add Contact.");
 				System.out.println("2.Edit Contact");
 				System.out.println("3.Delete Contact");
-				System.out.println("4.Display Address Book.");
-				System.out.println("5.Exit from the Application");
+				System.out.println("4.Display Contact.");
+				System.out.println("5.Add new address book.");
+				System.out.println("6.Display Address Book");
+				System.out.println("7.Exit from the Application");
 
 				System.out.println("\nEnter your choice :- ");
 				int userChoice = input.nextInt();
@@ -182,10 +206,16 @@ public class AddressBook {
 				case 4:
 					obj.displayContacts();
 					break;
+				case 5:
+					obj.newAddressBook();
+					break;
+				case 6:
+					obj.displayAddressBook();
+					break;
 				default:
 					System.out.println("Enter valid choice from the list...");
 				}
-				if (userChoice == 5) {
+				if (userChoice == 7) {
 					System.out.println("Successfully exited from the Address Book Application.");
 					break;
 				}

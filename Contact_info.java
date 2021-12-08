@@ -1,6 +1,7 @@
 package com.addressbooksystem;
 
 public class Contact_info {
+
 	String first_Name;
 	String last_Name;
 	String address;
@@ -10,7 +11,7 @@ public class Contact_info {
 	long phone_number;
 	String email;
 
-	// constructor
+	// generated constructor
 	public Contact_info(String first_name, String last_name, String address, String city, String state, int zip_code,
 			long phone_number, String email) {
 		this.first_Name = first_name;
