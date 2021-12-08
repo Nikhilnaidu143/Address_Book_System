@@ -90,7 +90,7 @@ public class Contact_info {
 
 
 	public void setPhone_number(long phone_number) {
-		phone_number = phone_number;
+		this.phone_number = phone_number;
 	}
 
 
