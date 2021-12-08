@@ -10,8 +10,9 @@ public class Contact_info {
 	long phone_number;
 	String email;
 	
-	public Contact_info(String first_name , String last_name, String address , String city, String state, int zip_code , long phone_number, String email) {
-		
+	
+	public Contact_info(String first_name , String last_name, String address ,
+			String city, String state, int zip_code , long phone_number, String email) {	
 		this.first_Name = first_name;
 		this.last_Name = last_name;
 		this.address = address;
@@ -22,14 +23,14 @@ public class Contact_info {
 		this.email = email;
 	}
 	
-
+	// initializing getter and setters
 	public String getFirst_Name() {
 		return first_Name;
 	}
 
 
 	public void setFirst_Name(String first_Name) {
-		first_Name = first_Name;
+		this.first_Name = first_Name;
 	}
 
 
@@ -39,7 +40,7 @@ public class Contact_info {
 
 
 	public void setLast_Name(String last_Name) {
-		last_Name = last_Name;
+		this.last_Name = last_Name;
 	}
 
 
@@ -49,7 +50,7 @@ public class Contact_info {
 
 
 	public void setAddress(String address) {
-		address = address;
+		this.address = address;
 	}
 
 
@@ -59,7 +60,7 @@ public class Contact_info {
 
 
 	public void setCity(String city) {
-		city = city;
+		this.city = city;
 	}
 
 
@@ -69,7 +70,7 @@ public class Contact_info {
 
 
 	public void setState(String state) {
-		state = state;
+		this.state = state;
 	}
 
 
@@ -79,7 +80,7 @@ public class Contact_info {
 
 
 	public void setZip_code(int zip_code) {
-		zip_code = zip_code;
+		this.zip_code = zip_code;
 	}
 
 
@@ -89,7 +90,7 @@ public class Contact_info {
 
 
 	public void setPhone_number(long phone_number) {
-		phone_number = phone_number;
+		this.phone_number = phone_number;
 	}
 
 
@@ -99,14 +100,19 @@ public class Contact_info {
 
 
 	public void setEmail(String email) {
-		email = email;
+		this.email = email;
 	}
 
-
+	// returning conatcs 
 	@Override
 	public String toString() {
-		return String.format(getFirst_Name() + " " + getLast_Name() + " " + getAddress() + " " + getCity() + " " + getState() + " " + getZip_code() + " " + getPhone_number() + " " + getEmail());
+		return String.format("First_name :- " + getFirst_Name() + "\n" 
+							+ "Laste_name :- " + getLast_Name() + "\n" 
+							+ "Address :- " + getAddress() + "\n" 
+							+ "City :- " + getCity() + "\n" 
+							+ "State :- " + getState() + "\n" 
+							+ "Zip-code :- " + getZip_code() + "\n" 
+							+ "Phone-number :- " + getPhone_number() + "\n" 
+							+ "Email :- " + getEmail() + "\n\n");
 	}
-	
-	
 }
