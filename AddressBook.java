@@ -1,4 +1,4 @@
-package com.Address_book_system;
+package com.addressbooksystem;
 
 import java.util.*;
 
