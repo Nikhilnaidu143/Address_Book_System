@@ -155,7 +155,7 @@ public class AddressBook {
 
 	// UC-6:- Ability to add multiple address books to system
 	public void newAddressBook() {
-		System.out.println("Enter Address Book Namw :- ");
+		System.out.println("Enter Address Book Name :- ");
 		String userInputBookName = input.next();
 
 		AddressBookList addressBookObj = new AddressBookList(userInputBookName);
