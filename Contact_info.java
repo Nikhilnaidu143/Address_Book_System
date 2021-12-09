@@ -89,7 +89,6 @@ public class Contact_info {
 		this.email = email;
 	}
 
-	
 	// returning contacts
 	@Override
 	public String toString() {
