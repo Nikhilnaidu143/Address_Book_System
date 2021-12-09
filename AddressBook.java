@@ -11,7 +11,7 @@ public class AddressBook {
 
 	// building add contact feature
 	public void addContact() {
-		
+
 		System.out.print("\nEnter First Name:- ");
 		String first = input.next();
 
@@ -188,7 +188,7 @@ public class AddressBook {
 				continue;
 			}
 		}
-		return true; 
+		return true;
 	}
 
 	// main method
