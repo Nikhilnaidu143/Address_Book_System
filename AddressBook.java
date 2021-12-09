@@ -11,6 +11,7 @@ public class AddressBook {
 
 	// building add contact feature
 	public void addContact() {
+		
 		System.out.print("\nEnter First Name:- ");
 		String first = input.next();
 
@@ -36,9 +37,12 @@ public class AddressBook {
 		String email = input.next();
 
 		Contact_info contact = new Contact_info(first, last, add, city, state, zip, phone, email);
-		contactBook.add(contact);
-
-		System.out.println("\nContact added Successfully.\n");
+		if (duplicateCheck(first)) {
+			contactBook.add(contact);
+			System.out.println("\nContact added Successfully.\n");
+		} else {
+			System.out.println("\nYou have already this person in your contact list.\n");
+		}
 	}
 
 	// displaying all existing contacts
@@ -136,7 +140,7 @@ public class AddressBook {
 
 			if (deleteByName.equals(Finding_name_in_arrayList)) {
 				contactBook.remove(i);
-				System.out.println("\nSelected contact deleted successfully.");
+				System.out.println("\nSelected contact deleted successfully.\n");
 				break;
 			} else {
 				continue;
@@ -171,6 +175,22 @@ public class AddressBook {
 		}
 	}
 
+	/**
+	 * UC-7:- Ability to ensure there is no Duplicate Entry of the same Person in a
+	 * particular Address Book.
+	 **/
+	public boolean duplicateCheck(String first) {
+		for (int i = 0; i < contactBook.size(); i++) {
+			String getFirstName = contactBook.get(i).first_Name;
+			if (getFirstName.equalsIgnoreCase(first)) {
+				return false;
+			} else {
+				continue;
+			}
+		}
+		return true; 
+	}
+
 	// main method
 	public static void main(String[] args) {
 		System.out.println("--------------------Welcome To Address Book Program-----------------------");
@@ -179,7 +199,6 @@ public class AddressBook {
 		System.out.print("Enter valid option to perform Address Book Application[1.Enter (or) 2.Exit] :- ");
 		int enterExit = input.nextInt();
 		if (enterExit == 1) {
-
 			while (enterExit != 2) {
 				System.out.println("Choose which operation you want to perform from below list :- ");
 				System.out.println("1.Add Contact.");
