@@ -5,6 +5,7 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 	static Scanner input = new Scanner(System.in);
@@ -227,6 +228,18 @@ public class AddressBook {
 		System.out.println(" ");
 	}
 
+	public void countByCity() {
+		/*** This will print number of persons who are in same city. ***/
+		System.out.println(contactBook.stream().collect(Collectors.groupingBy((Contact_info c) -> c.getCity() , Collectors.counting())));
+		System.out.println(" ");
+	}
+	
+	public void countByState() {
+		/*** This will print number of persons who are in same city. ***/
+		System.out.println(contactBook.stream().collect(Collectors.groupingBy((Contact_info c) -> c.getState() , Collectors.counting())));
+		System.out.println(" ");
+	}
+	
 	// main method
 	public static void main(String[] args) {
 		System.out.println("--------------------Welcome To Address Book Program-----------------------");
@@ -245,7 +258,9 @@ public class AddressBook {
 				System.out.println("6.Display Address Book");
 				System.out.println("7.Search Person By City Name.");
 				System.out.println("8.Search Person By State Name.");
-				System.out.println("9.Exit from the Application");
+				System.out.println("9.Count By City.");
+				System.out.println("10.count BY State.");
+				System.out.println("11.Exit from the Application");
 
 				System.out.println("\nEnter your choice :- ");
 				int userChoice = input.nextInt();
@@ -275,10 +290,16 @@ public class AddressBook {
 				case 8:
 					obj.searchPersonByState();
 					break;
+				case 9:
+					obj.countByCity();
+					break;
+				case 10:
+					obj.countByState();
+					break;
 				default:
 					System.out.println("Enter valid choice from the list...");
 				}
-				if (userChoice == 9) {
+				if (userChoice == 11) {
 					System.out.println("Successfully exited from the Address Book Application.");
 					break;
 				}
