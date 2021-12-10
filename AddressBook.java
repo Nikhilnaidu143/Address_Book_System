@@ -1,6 +1,9 @@
 package com.addressbooksystem;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -191,34 +194,39 @@ public class AddressBook {
 	}
 
 	/**
-	 * UC-8:- Ability to search Person in a City or State across the multiple
-	 * AddressBook.
+	 * UC-9:- Ability to view Persons by City or State - Maintain Dictionary of City
+	 * and Person as well as State and Person
 	 **/
 	public void searchPersonByCity() {
 		System.out.print("\nEnter city to search person by city name :- ");
 		String searchCity = input.next();
+		
+		/***** Creating dictionary of city(keys) and name(values) *****/
+		Dictionary cityWiseDict = new Hashtable();
+		contactBook.stream().filter(hashTable -> hashTable.getCity().contains(searchCity)).forEach(contactBook -> cityWiseDict.put(contactBook.getFirst_Name(), searchCity));
+		
 		System.out.println("Persons who are in same city " + searchCity + " :- ");
-		for (int i = 0; i < contactBook.size(); i++) {
-			String getCItyName = contactBook.get(i).city;
-			if (searchCity.equals(getCItyName)) {
-				System.out.println(contactBook.get(i).getFirst_Name());
-			}
+		for(Enumeration i = cityWiseDict.keys(); i.hasMoreElements();) {
+			System.out.println(i.nextElement());
 		}
 		System.out.println(" ");
 	}
+
 	public void searchPersonByState() {
 		System.out.print("\nEnter State to search person by State name :- ");
 		String searchState = input.next();
+		
+		/***** Creating dictionary of state(keys) and name(values) *****/
+		Dictionary stateWiseDict = new Hashtable();
+		contactBook.stream().filter(hashTable -> hashTable.getCity().contains(searchState)).forEach(contactBook -> stateWiseDict.put(contactBook.getFirst_Name(), searchState));
+		
 		System.out.println("Persons who are in same State " + searchState + " :- ");
-		for (int i = 0; i < contactBook.size(); i++) {
-			String getStateName = contactBook.get(i).state;
-			if (searchState.equals(getStateName)) {
-				System.out.println(contactBook.get(i).getFirst_Name());
-			}
+		for(Enumeration i = stateWiseDict.keys(); i.hasMoreElements();) {
+			System.out.println(i.nextElement());
 		}
 		System.out.println(" ");
 	}
-	
+
 	// main method
 	public static void main(String[] args) {
 		System.out.println("--------------------Welcome To Address Book Program-----------------------");
