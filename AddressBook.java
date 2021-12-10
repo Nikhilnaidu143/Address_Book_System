@@ -218,7 +218,7 @@ public class AddressBook {
 		
 		/***** Creating dictionary of state(keys) and name(values) *****/
 		Dictionary stateWiseDict = new Hashtable();
-		contactBook.stream().filter(hashTable -> hashTable.getCity().contains(searchState)).forEach(contactBook -> stateWiseDict.put(contactBook.getFirst_Name(), searchState));
+		contactBook.stream().filter(hashTable -> hashTable.getState().contains(searchState)).forEach(contactBook -> stateWiseDict.put(contactBook.getFirst_Name(), searchState));
 		
 		System.out.println("Persons who are in same State " + searchState + " :- ");
 		for(Enumeration i = stateWiseDict.keys(); i.hasMoreElements();) {
