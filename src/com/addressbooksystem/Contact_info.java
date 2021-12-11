@@ -10,6 +10,7 @@ public class Contact_info {
 	long phone_number;
 	String email;
 
+	// constructor
 	public Contact_info(String first_name, String last_name, String address, String city, String state, int zip_code,
 			long phone_number, String email) {
 		this.first_Name = first_name;
@@ -87,7 +88,7 @@ public class Contact_info {
 		this.email = email;
 	}
 
-	// returning conatcs
+	// returning contacts
 	@Override
 	public String toString() {
 		return String.format("\nFirst_name :- " + getFirst_Name() + "\n" + "Laste_name :- " + getLast_Name() + "\n"
