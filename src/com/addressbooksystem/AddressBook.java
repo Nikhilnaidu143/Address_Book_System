@@ -1,6 +1,7 @@
 package com.addressbooksystem;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -323,6 +324,17 @@ public class AddressBook {
 		System.out.println("\nNumber of persons in same state " + "(" + countState + ") :- " + count + ".\n");
 	}
 	
+	/***UC-11 :- Ability to sort the entries in the address book alphabetically by Person’s name. ***/
+	public void sortByName() {
+		addressBookNameList.stream()
+		.filter(addressBook -> addressBook.userInputBookName.equals(addressBook.userInputBookName))
+		.forEach(person -> person.contact.stream()
+		.sorted((contact1 , contact2) -> contact1.getFirst_Name()
+		.compareTo(contact2.getFirst_Name()))
+		.forEach(contact -> System.out.println(contact)));
+	}
+	
+	
 	// main method
 	public static void main(String[] args) {
 		System.out.println("--------------------Welcome To Address Book Program-----------------------");
@@ -343,7 +355,8 @@ public class AddressBook {
 				System.out.println("7.Search person by State.");
 				System.out.println("8.Count By City.");
 				System.out.println("9.count By State.");
-				System.out.println("10.Exit from the Application.");
+				System.out.println("10.Sort By Name.");
+				System.out.println("11.Exit from the Application.");
 
 				System.out.println("\nEnter your choice :- ");
 				int userChoice = input.nextInt();
@@ -376,10 +389,13 @@ public class AddressBook {
 				case 9:
 					obj.countByState();
 					break;
+				case 10:
+					obj.sortByName();
+					break;
 				default:
 					System.out.println("Enter valid choice from the list...");
 				}
-				if (userChoice == 10) {
+				if (userChoice == 11) {
 					System.out.println("Successfully exited from the Address Book Application.");
 					break;
 				}
