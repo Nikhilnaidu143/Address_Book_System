@@ -5,12 +5,10 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class AddressBook {
 	static Scanner input = new Scanner(System.in);
 	static ArrayList<AddressBookList> addressBookNameList = new ArrayList<>();
-	private static AddressBookList AddressBookList;
 
 	// building add contact feature
 	public void addContact() {
