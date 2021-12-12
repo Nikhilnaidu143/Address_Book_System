@@ -323,18 +323,6 @@ public class AddressBook {
 		System.out.println("\nNumber of persons in same state " + "(" + countState + ") :- " + count + ".\n");
 	}
 	
-	/***
-	 * UC-11 :- Ability to sort the entries in the address book alphabetically by
-	 * Person’s name.
-	 ***/
-	public void sortByName() {
-		AddressBookList addressBook = findAddressBook();
-		addressBook.contact.stream()
-		.sorted((contact1, contact2) -> contact1.getFirst_Name()
-		.compareTo(contact2.getFirst_Name()))
-		.forEach(contact -> System.out.println(contact));
-	}
-	
 	/*** Finding address Book ***/
 	public AddressBookList findAddressBook() {
 		if(addressBookNameList.isEmpty()) {
@@ -352,7 +340,43 @@ public class AddressBook {
 		System.out.println("Address Book does not exist.");
 		return null;
 	}
-	
+
+	/**
+	 * UC-12:- Ability to sort the entries in the address book by City, State, or
+	 * Zip.
+	 **/
+	public void sortByName_City_State_zip() {
+		
+		AddressBookList addressBook = findAddressBook();
+
+		System.out.println("Please select any of the below options." + "\n" + "1. To Sort By Name." + "\n"
+				+ "2. To Sort By City." + "\n" + "3. To Sort By State." + "\n" + "4. To Sort By Zip Code. :- ");
+		int choice = input.nextInt();
+		switch (choice) {
+		case 1:
+			addressBook.contact.stream()
+					.sorted((contact1, contact2) -> contact1.getFirst_Name().compareTo(contact2.getFirst_Name()))
+					.forEach(contact -> System.out.println(contact));
+			break;
+		case 2:
+			addressBook.contact.stream()
+					.sorted((contact1, contact2) -> contact1.getCity().compareTo(contact2.getCity()))
+					.forEach(contact -> System.out.println(contact));
+			break;
+		case 3:
+			addressBook.contact.stream()
+					.sorted((contact1, contact2) -> contact1.getState().compareTo(contact2.getState()))
+					.forEach(contact -> System.out.println(contact));
+			break;
+		case 4:
+			addressBook.contact.stream().sorted(
+					(contact1, contact2) -> Integer.valueOf(contact1.getZip_code()).compareTo(contact2.getZip_code()))
+					.forEach(contact -> System.out.println(contact));
+			break;
+		default:
+			System.out.println("Please choose valid option.");
+		}
+	}
 	
 	// main method
 	public static void main(String[] args) {
@@ -373,7 +397,7 @@ public class AddressBook {
 				System.out.println("7.Search person by State.");
 				System.out.println("8.Count By City.");
 				System.out.println("9.count By State.");
-				System.out.println("10.Sort By Name.");
+				System.out.println("10.Sort By Name/City/State/Zip-Code.");
 				System.out.println("11.Exit from the Application.");
 
 				System.out.println("\nEnter your choice :- ");
@@ -408,7 +432,7 @@ public class AddressBook {
 					obj.countByState();
 					break;
 				case 10:
-					obj.sortByName();
+					obj.sortByName_City_State_zip();
 					break;
 				default:
 					System.out.println("Enter valid choice from the list...");

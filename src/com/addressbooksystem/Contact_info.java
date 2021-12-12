@@ -25,7 +25,7 @@ public class Contact_info {
 		this.email = email;
 	}
 
-	// initializing getter and setters
+	// defining getter and setters methods
 	public String getFirst_Name() {
 		return first_Name;
 	}

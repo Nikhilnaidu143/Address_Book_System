@@ -7,7 +7,6 @@ public class AddressBookList {
 	String userInputBookName;
 	ArrayList<Contact_info> contact;
 
-	
 	// constructor
 	public AddressBookList(String userInputBookName) {
 		this.userInputBookName = userInputBookName;
