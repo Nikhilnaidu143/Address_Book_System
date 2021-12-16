@@ -1,5 +1,11 @@
 package com.addressbooksystem;
 
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -9,10 +15,9 @@ import java.util.Scanner;
 public class AddressBook {
 	static Scanner input = new Scanner(System.in);
 	static ArrayList<AddressBookList> addressBookNameList = new ArrayList<>();
-
+	
 	// building add contact feature
 	public void addContact() {
-
 		if (addressBookNameList.isEmpty()) {
 			System.out.println("\nPlease add Address book to add contacts.");
 			return;
@@ -142,7 +147,7 @@ public class AddressBook {
 							break;
 
 						case 7:
-							System.out.print("Enter new phonr number :- ");
+							System.out.print("Enter new phone number :- ");
 							long newPhone = input.nextLong();
 							person.setPhone_number(newPhone);
 							System.out.println("Phone number is updated.");
@@ -206,7 +211,7 @@ public class AddressBook {
 	// UC-6:- Ability to add multiple address books to system
 	public void newAddressBook() {
 		
-		System.out.println("Enter Address Book Name :- ");
+		System.out.print("Enter Address Book Name :- ");
 		String userInputBookName = input.next();
 		
 		if(!checkUnique(userInputBookName)) {
@@ -378,74 +383,47 @@ public class AddressBook {
 		}
 	}
 	
-	// main method
-	public static void main(String[] args) {
-		System.out.println("--------------------Welcome To Address Book Program-----------------------");
-		AddressBook obj = new AddressBook();
-
-		System.out.print("Enter valid option to perform Address Book Application[1.Enter (or) 2.Exit] :- ");
-		int enterExit = input.nextInt();
-		if (enterExit == 1) {
-			while (enterExit != 2) {
-				System.out.println("Choose which operation you want to perform from below list :- ");
-				System.out.println("1.Add Contact.");
-				System.out.println("2.Edit Contact");
-				System.out.println("3.Delete Contact.");
-				System.out.println("4.Add new address book.");
-				System.out.println("5.Display Address Book.");
-				System.out.println("6.Search person by City.");
-				System.out.println("7.Search person by State.");
-				System.out.println("8.Count By City.");
-				System.out.println("9.count By State.");
-				System.out.println("10.Sort By Name/City/State/Zip-Code.");
-				System.out.println("11.Exit from the Application.");
-
-				System.out.println("\nEnter your choice :- ");
-				int userChoice = input.nextInt();
-
-				switch (userChoice) {
-				case 1:
-					obj.addMultiplePersons();
-					break;
-				case 2:
-					obj.editContact();
-					break;
-				case 3:
-					obj.deleteContact();
-					break;
-				case 4:
-					obj.newAddressBook();
-					break;
-				case 5:
-					obj.displayAddressBook();
-					break;
-				case 6:
-					obj.searchPersonByCity();
-					break;
-				case 7:
-					obj.searchPersonByState();
-					break;
-				case 8:
-					obj.countByCity();
-					break;
-				case 9:
-					obj.countByState();
-					break;
-				case 10:
-					obj.sortByName_City_State_zip();
-					break;
-				default:
-					System.out.println("Enter valid choice from the list...");
-				}
-				if (userChoice == 11) {
-					System.out.println("Successfully exited from the Address Book Application.");
-					break;
-				}
-			}
-		} else if (enterExit == 2) {
-			System.out.println("Successfully exited from the Address Book Application.");
-		} else {
-			System.out.println("Choose Valid option [1.Enter (or) 2.Exit]...");
+	/***
+	 * UC-13:- Ability to Read or Write the Address Book with Persons Contact into a
+	 * File using File IO.
+	 ***/
+	public void writeContactsIntoTextFile() throws IOException {
+		/*** Array List to store updated contacts after all operations done for file-IO operations. ***/
+		ArrayList<AddressBookList> addressBooktemp = new ArrayList<AddressBookList>();
+		
+		/*** Adding addressbook with contacts to a new array list. ***/
+		addressBooktemp.addAll(addressBookNameList);
+		
+		/*** Writing into text file using FILE-IO. ***/
+		FileWriter fileWriter = new FileWriter("AddressBookIO.txt");
+		
+		String stringAddressBookList = addressBooktemp.toString();
+		
+		for(int i = 0; i < stringAddressBookList.length(); i++) {
+			fileWriter.write(stringAddressBookList.charAt(i));
+			fileWriter.flush();
 		}
+		fileWriter.close();
+
+		System.out.println("Data Added into AddressBookIO.txt File.\n");
+	}
+	
+	// reading contacts data from text file.
+	public void readContactsFromTextFile() throws IOException {
+		System.out.println("---------------READING FROM TEXT FILE--------------");
+		
+		/** Writing into file if file does not exist(Empty file is created) in system. **/
+		Path path = Paths.get("AddressBookIO.txt");
+		if(!Files.exists(path)) {
+			System.out.println("OOPS! File is not there. Creating file....");
+			writeContactsIntoTextFile();
+		}
+		
+		FileInputStream fileInputStream = new FileInputStream("AddressBookIO.txt");
+		int i = 0;
+		while((i = fileInputStream.read()) != -1) {
+			System.out.print((char)i);
+		}
+		fileInputStream.close();
 	}
 }
