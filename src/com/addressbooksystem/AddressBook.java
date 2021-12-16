@@ -388,16 +388,11 @@ public class AddressBook {
 	 * File using File IO.
 	 ***/
 	public void writeContactsIntoTextFile() throws IOException {
-		/*** Array List to store updated contacts after all operations done for file-IO operations. ***/
-		ArrayList<AddressBookList> addressBooktemp = new ArrayList<AddressBookList>();
-		
-		/*** Adding addressbook with contacts to a new array list. ***/
-		addressBooktemp.addAll(addressBookNameList);
 		
 		/*** Writing into text file using FILE-IO. ***/
 		FileWriter fileWriter = new FileWriter("AddressBookIO.txt");
 		
-		String stringAddressBookList = addressBooktemp.toString();
+		String stringAddressBookList = addressBookNameList.toString();
 		
 		for(int i = 0; i < stringAddressBookList.length(); i++) {
 			fileWriter.write(stringAddressBookList.charAt(i));
