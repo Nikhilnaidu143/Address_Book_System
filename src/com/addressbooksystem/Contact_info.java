@@ -2,6 +2,7 @@ package com.addressbooksystem;
 
 public class Contact_info {
 	
+	
 	// instance variables.
 	String first_Name;
 	String last_Name;
