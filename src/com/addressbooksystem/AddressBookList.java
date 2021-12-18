@@ -22,7 +22,6 @@ public class AddressBookList {
 		this.userInputBookName = userInputBookName;
 	}
 	
-	
 	public ArrayList<Contact_info> getContact() {
 		return contact;
 	}

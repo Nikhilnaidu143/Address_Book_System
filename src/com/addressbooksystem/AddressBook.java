@@ -1,8 +1,11 @@
 package com.addressbooksystem;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +13,10 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Scanner;
+
+import com.opencsv.CSVWriter;
 
 public class AddressBook {
 	static Scanner input = new Scanner(System.in);
@@ -420,5 +426,48 @@ public class AddressBook {
 			System.out.print((char)i);
 		}
 		fileInputStream.close();
+	}
+
+	/**
+	 * UC-14:- Ability to Read/Write the Address Book with Persons Contact as CSV
+	 * File.
+	 **/
+	public void writeContactsIntoCSV() throws IOException {
+
+		List<String[]> stringsAddressBook = new ArrayList<>();
+
+		PrintWriter printWriter = new PrintWriter("AddressBook.csv");	//Used PrintWriter in place of FileWriter.
+		
+		CSVWriter csvWriter = new CSVWriter(printWriter);
+
+		/*** Adding contacts into stringsAddressBook ***/
+		addressBookNameList.forEach(addressBook -> addressBook.contact.stream().forEach(ad -> {
+					stringsAddressBook.add(new String[] { ad.getFirst_Name(), ad.getLast_Name(), 
+					ad.getAddress(), ad.getCity(), ad.getState(),Integer.toString(ad.getZip_code()),
+					Long.toString(ad.getPhone_number()), ad.getEmail() });}));
+		
+		csvWriter.writeAll(stringsAddressBook);    //Writing contacts into AddressBook.csv file.
+		csvWriter.flush();
+		csvWriter.close();
+		
+		System.out.println("Contacts are added to AddressBook.csv file successfully.");
+	}
+	
+	//Reading from CSV.
+	public void readContactsFromCSV() throws IOException {
+		Path path = Paths.get("AddressBook.csv");
+		if(!Files.exists(path)) {
+			System.out.println("OOPS! CSV file is not there. Creating CSV file...");
+			writeContactsIntoCSV();
+		}
+		
+		BufferedReader bufferedReader = new BufferedReader(new FileReader("AddressBook.csv"));
+		String line = "";
+		while ((line = bufferedReader.readLine()) != null) {
+			String[] contact = line.split(",");
+			System.out.println("AddressBook [firstName=" + contact[0] + ", lastName=" + contact[1] + ", address="
+					+ contact[2] + ", cityName=" + contact[3] + ", stateName=" + contact[4] + ", zip=" + contact[5]
+					+ ", phoneNumber=" + contact[6] + "]");
+		}
 	}
 }
