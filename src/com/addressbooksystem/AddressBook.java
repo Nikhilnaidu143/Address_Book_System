@@ -47,8 +47,9 @@ public class AddressBook {
 			Contact_info contact = new Contact_info(first, last, add, city, state, zip, phone, email);
 
 			if (duplicateCheck(enter , first)) {
-				addressBookNameList.stream().filter(find -> find.userInputBookName.contains(enter))
-						.forEach(addressBook -> addressBook.contact.add(contact));
+				addressBookNameList.stream()
+				.filter(find -> find.userInputBookName.contains(enter))
+				.forEach(addressBook -> addressBook.contact.add(contact));
 	
 				System.out.println("\nContact added Successfully.\n");
 			}
@@ -94,8 +95,7 @@ public class AddressBook {
 			if (enter.equals(addressBook.userInputBookName)) {
 				for (Contact_info person : addressBook.contact) {
 					if (name.equals(person.first_Name)) {
-						System.out
-								.print("\nSelect option to edit..." + " 1.First_name." + " 2.Last_name." + " 3.Address."
+						System.out.print("\nSelect option to edit..." + " 1.First_name." + " 2.Last_name." + " 3.Address."
 										+ " 4.City" + " 5.State" + " 6.Zip_code" + " 7.Phone_number" + " 8.Email :- ");
 						int option = input.nextInt();
 						switch (option) {
@@ -323,6 +323,37 @@ public class AddressBook {
 		System.out.println("\nNumber of persons in same state " + "(" + countState + ") :- " + count + ".\n");
 	}
 	
+	/***
+	 * UC-11 :- Ability to sort the entries in the address book alphabetically by
+	 * Person’s name.
+	 ***/
+	public void sortByName() {
+		AddressBookList addressBook = findAddressBook();
+		addressBook.contact.stream()
+		.sorted((contact1, contact2) -> contact1.getFirst_Name()
+		.compareTo(contact2.getFirst_Name()))
+		.forEach(contact -> System.out.println(contact));
+	}
+	
+	/*** Finding address Book ***/
+	public AddressBookList findAddressBook() {
+		if(addressBookNameList.isEmpty()) {
+			System.out.println("Please create an address book first.");
+			return null;
+		}
+		System.out.println("Please enter the name of the address book :- ");
+		String getAddressBook = input.next();
+		
+		for (AddressBookList addressBook : addressBookNameList) {
+			if(getAddressBook.equals(addressBook.userInputBookName)) {
+				return addressBook;											// returning addressBook if found in the address book list.
+			}
+		}
+		System.out.println("Address Book does not exist.");
+		return null;
+	}
+	
+	
 	// main method
 	public static void main(String[] args) {
 		System.out.println("--------------------Welcome To Address Book Program-----------------------");
@@ -331,7 +362,6 @@ public class AddressBook {
 		System.out.print("Enter valid option to perform Address Book Application[1.Enter (or) 2.Exit] :- ");
 		int enterExit = input.nextInt();
 		if (enterExit == 1) {
-
 			while (enterExit != 2) {
 				System.out.println("Choose which operation you want to perform from below list :- ");
 				System.out.println("1.Add Contact.");
@@ -343,7 +373,8 @@ public class AddressBook {
 				System.out.println("7.Search person by State.");
 				System.out.println("8.Count By City.");
 				System.out.println("9.count By State.");
-				System.out.println("10.Exit from the Application.");
+				System.out.println("10.Sort By Name.");
+				System.out.println("11.Exit from the Application.");
 
 				System.out.println("\nEnter your choice :- ");
 				int userChoice = input.nextInt();
@@ -376,10 +407,13 @@ public class AddressBook {
 				case 9:
 					obj.countByState();
 					break;
+				case 10:
+					obj.sortByName();
+					break;
 				default:
 					System.out.println("Enter valid choice from the list...");
 				}
-				if (userChoice == 10) {
+				if (userChoice == 11) {
 					System.out.println("Successfully exited from the Address Book Application.");
 					break;
 				}

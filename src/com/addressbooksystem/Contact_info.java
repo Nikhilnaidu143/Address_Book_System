@@ -1,6 +1,5 @@
 package com.addressbooksystem;
 
-
 public class Contact_info {
 	
 	// instance variables.

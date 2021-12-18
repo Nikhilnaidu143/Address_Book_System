@@ -32,6 +32,7 @@ public class AddressBookList {
 		this.contact = contact;
 	}
 
+	/*** Overriding toString() method ***/
 	@Override
 	public String toString() {
 		return "Address Book name :- " + userInputBookName + "\n" + "Contacts :- " + contact;
