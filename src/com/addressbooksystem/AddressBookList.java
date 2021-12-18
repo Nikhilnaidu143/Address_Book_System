@@ -6,9 +6,8 @@ public class AddressBookList {
 	
 	String userInputBookName;
 	ArrayList<Contact_info> contact;
-
 	
-	// constructor
+	// parameterized constructor
 	public AddressBookList(String userInputBookName) {
 		this.userInputBookName = userInputBookName;
 		this.contact = new ArrayList<Contact_info>();

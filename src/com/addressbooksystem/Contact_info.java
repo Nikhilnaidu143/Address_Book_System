@@ -12,7 +12,7 @@ public class Contact_info {
 	long phone_number;
 	String email;
 
-	// generated constructor
+	// parameterized constructor
 	public Contact_info(String first_name, String last_name, String address, String city, String state, int zip_code,
 			long phone_number, String email) {
 		this.first_Name = first_name;
@@ -25,7 +25,7 @@ public class Contact_info {
 		this.email = email;
 	}
 
-	// initializing getter and setters
+	// defining getter and setters methods
 	public String getFirst_Name() {
 		return first_Name;
 	}
