@@ -16,6 +16,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opencsv.CSVWriter;
 
 public class AddressBook {
@@ -455,6 +457,7 @@ public class AddressBook {
 	
 	//Reading from CSV.
 	public void readContactsFromCSV() throws IOException {
+		System.out.println("---------------READING FROM CSV FILE--------------");
 		Path path = Paths.get("AddressBook.csv");
 		if(!Files.exists(path)) {
 			System.out.println("OOPS! CSV file is not there. Creating CSV file...");
@@ -468,6 +471,39 @@ public class AddressBook {
 			System.out.println("AddressBook [firstName=" + contact[0] + ", lastName=" + contact[1] + ", address="
 					+ contact[2] + ", cityName=" + contact[3] + ", stateName=" + contact[4] + ", zip=" + contact[5]
 					+ ", phoneNumber=" + contact[6] + "]");
+		}
+		bufferedReader.close();
+	}
+	
+	/**
+	 * UC-15 :- Ability to Read or Write the Address Book with Persons Contact as
+	 * JSON File.
+	 **/
+	public void writeContactsIntoJSON_File() throws IOException {
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String output = gson.toJson(addressBookNameList);
+		FileWriter fileWriter = new FileWriter("AddressBook.json");
+		fileWriter.write(output);
+		fileWriter.close();
+		
+		System.out.println("Contacts are added to AddressBook.json file successfully.");
+	}
+	
+	//reading contacts from JSON file.
+	public void readContactsFromJSON_File() throws IOException {
+		System.out.println("---------------READING FROM JSON FILE--------------");
+		
+		Gson gson = new Gson();
+		Path path = Paths.get("AddressBook.json");
+		if(!(Files.exists(path))) {
+			System.out.println("OOPS! JSON file is not there, Creating JSON file..");
+			writeContactsIntoJSON_File();
+		}
+		else {
+			FileReader fileReader = new FileReader("AddressBook.json");
+			Object temp = gson.fromJson(fileReader, Object.class);
+			System.out.println(temp);
 		}
 	}
 }

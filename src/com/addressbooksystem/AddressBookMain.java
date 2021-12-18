@@ -30,7 +30,9 @@ public class AddressBookMain {
 				System.out.println("12.Read from Text File.");
 				System.out.println("13.Write into CSV file.");
 				System.out.println("14.Read from CSV file.");
-				System.out.println("15.Exit from the Application.");
+				System.out.println("15.Write into JSON file.");
+				System.out.println("16.Read from JSON file.");
+				System.out.println("17.Exit from the Application.");
 
 				System.out.println("\nEnter your choice :- ");
 				int userChoice = input.nextInt();
@@ -78,10 +80,16 @@ public class AddressBookMain {
 				case 14:
 					obj.readContactsFromCSV();
 					break;
+				case 15:
+					obj.writeContactsIntoJSON_File();
+					break;
+				case 16:
+					obj.readContactsFromJSON_File();
+					break;
 				default:
 					System.out.println("Enter valid choice from the list...");
 				}
-				if (userChoice == 15) {
+				if (userChoice == 17) {
 					System.out.println("Successfully exited from the Address Book Application.");
 					break;
 				}
