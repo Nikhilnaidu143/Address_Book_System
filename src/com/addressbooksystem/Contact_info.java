@@ -90,7 +90,7 @@ public class Contact_info {
 	// returning conatcs
 	@Override
 	public String toString() {
-		return String.format("First_name :- " + getFirst_Name() + "\n" + "Laste_name :- " + getLast_Name() + "\n"
+		return String.format("\nFirst_name :- " + getFirst_Name() + "\n" + "Laste_name :- " + getLast_Name() + "\n"
 				+ "Address :- " + getAddress() + "\n" + "City :- " + getCity() + "\n" + "State :- " + getState() + "\n"
 				+ "Zip-code :- " + getZip_code() + "\n" + "Phone-number :- " + getPhone_number() + "\n" + "Email :- "
 				+ getEmail() + "\n\n");
