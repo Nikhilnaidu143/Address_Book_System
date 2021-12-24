@@ -26,7 +26,7 @@ public class FileOperations {
 	public void writeContactsIntoTextFile() throws IOException {
 		
 		/*** Writing into text file using FILE-IO. ***/
-		FileWriter fileWriter = new FileWriter("AddressBookIO.txt");
+		FileWriter fileWriter = new FileWriter("files/AddressBookIO.txt");
 		
 		String stringAddressBookList = AddressBookService.addressBookNameList.toString();
 		
@@ -44,13 +44,13 @@ public class FileOperations {
 		System.out.println("---------------READING FROM TEXT FILE--------------");
 		
 		/** Writing into file if file does not exist(Empty file is created) in system. **/
-		Path path = Paths.get("AddressBookIO.txt");
+		Path path = Paths.get("files/AddressBookIO.txt");
 		if(!Files.exists(path)) {
 			System.out.println("OOPS! File is not there. Creating file....");
 			writeContactsIntoTextFile();
 		}
 		
-		FileInputStream fileInputStream = new FileInputStream("AddressBookIO.txt");
+		FileInputStream fileInputStream = new FileInputStream("files/AddressBookIO.txt");
 		int i = 0;
 		while((i = fileInputStream.read()) != -1) {
 			System.out.print((char)i);
@@ -66,10 +66,13 @@ public class FileOperations {
 
 		List<String[]> stringsAddressBook = new ArrayList<>();
 
-		PrintWriter printWriter = new PrintWriter("AddressBook.csv");	//Used PrintWriter in place of FileWriter.
+		PrintWriter printWriter = new PrintWriter("files/AddressBook.csv");	//Used PrintWriter in place of FileWriter.
 		
 		CSVWriter csvWriter = new CSVWriter(printWriter);
-
+		
+		/*** Adding header to the csv file. ***/
+		stringsAddressBook.add(new String[] {"First_Name","Last_Name","Address","City","State","Zip_Code","Phone_Number","E-Mail"});
+		
 		/*** Adding contacts into stringsAddressBook ***/
 		AddressBookService.addressBookNameList.forEach(addressBook -> addressBook.contact.stream().forEach(ad -> {
 					stringsAddressBook.add(new String[] { ad.getFirst_Name(), ad.getLast_Name(), 
@@ -86,13 +89,13 @@ public class FileOperations {
 	//Reading from CSV.
 	public void readContactsFromCSV() throws IOException {
 		System.out.println("---------------READING FROM CSV FILE--------------");
-		Path path = Paths.get("AddressBook.csv");
+		Path path = Paths.get("files/AddressBook.csv");
 		if(!Files.exists(path)) {
 			System.out.println("OOPS! CSV file is not there. Creating CSV file...");
 			writeContactsIntoCSV();
 		}
 		
-		BufferedReader bufferedReader = new BufferedReader(new FileReader("AddressBook.csv"));
+		BufferedReader bufferedReader = new BufferedReader(new FileReader("files/AddressBook.csv"));
 		String line = "";
 		while ((line = bufferedReader.readLine()) != null) {
 			String[] contact = line.split(",");
@@ -110,7 +113,7 @@ public class FileOperations {
 	public void writeContactsIntoJSON_File() throws IOException {
 		
 		String output = gson.toJson(AddressBookService.addressBookNameList);
-		FileWriter fileWriter = new FileWriter("AddressBook.json");
+		FileWriter fileWriter = new FileWriter("files/AddressBook.json");
 		fileWriter.write(output);
 		fileWriter.close();
 		
@@ -121,13 +124,13 @@ public class FileOperations {
 	public void readContactsFromJSON_File() throws IOException {
 		System.out.println("---------------READING FROM JSON FILE--------------");
 		
-		Path path = Paths.get("AddressBook.json");
+		Path path = Paths.get("files/AddressBook.json");
 		if(!(Files.exists(path))) {
 			System.out.println("OOPS! JSON file is not there, Creating JSON file..");
 			writeContactsIntoJSON_File();
 		}
 		else {
-			FileReader fileReader = new FileReader("AddressBook.json");
+			FileReader fileReader = new FileReader("files/AddressBook.json");
 			Object temp = gson.fromJson(fileReader, Object.class);
 			System.out.println(temp);
 		}
