@@ -1,13 +1,17 @@
-package com.addressbooksystem;
+package com.addressbooksystem.main;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import com.addressbooksystem.service.AddressBookService;
+import com.addressbooksystem.service.FileOperations;
 
 public class AddressBookMain {
 	// main method
 	public static void main(String[] args) throws IOException {
 		System.out.println("--------------------Welcome To Address Book Program-----------------------");
-		AddressBook obj = new AddressBook();
+		AddressBookService obj = new AddressBookService();
+		FileOperations fileOperations = new FileOperations();
 		
 		Scanner input = new Scanner(System.in);
 		
@@ -69,22 +73,22 @@ public class AddressBookMain {
 					obj.sortByName_City_State_zip();
 					break;
 				case 11:
-					obj.writeContactsIntoTextFile();
+					fileOperations.writeContactsIntoTextFile();
 					break;
 				case 12:
-					obj.readContactsFromTextFile();
+					fileOperations.readContactsFromTextFile();
 					break;
 				case 13:
-					obj.writeContactsIntoCSV();
+					fileOperations.writeContactsIntoCSV();
 					break;
 				case 14:
-					obj.readContactsFromCSV();
+					fileOperations.readContactsFromCSV();
 					break;
 				case 15:
-					obj.writeContactsIntoJSON_File();
+					fileOperations.writeContactsIntoJSON_File();
 					break;
 				case 16:
-					obj.readContactsFromJSON_File();
+					fileOperations.readContactsFromJSON_File();
 					break;
 				default:
 					System.out.println("Enter valid choice from the list...");
