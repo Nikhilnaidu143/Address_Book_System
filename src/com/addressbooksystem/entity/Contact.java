@@ -1,19 +1,19 @@
-package com.addressbooksystem;
+package com.addressbooksystem.entity;
 
-public class Contact_info {
+public class Contact {
 	
 	// instance variables.
-	String first_Name;
-	String last_Name;
-	String address;
-	String city;
-	String state;
-	int zip_code;
-	long phone_number;
-	String email;
+	public String first_Name;
+	public String last_Name;
+	public String address;
+	public String city;
+	public String state;
+	public int zip_code;
+	public long phone_number;
+	public String email;
 
 	// parameterized constructor
-	public Contact_info(String first_name, String last_name, String address, String city, String state, int zip_code,
+	public Contact(String first_name, String last_name, String address, String city, String state, int zip_code,
 			long phone_number, String email) {
 		this.first_Name = first_name;
 		this.last_Name = last_name;

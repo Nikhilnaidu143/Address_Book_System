@@ -1,16 +1,16 @@
-package com.addressbooksystem;
+package com.addressbooksystem.entity;
 
 import java.util.ArrayList;
 
-public class AddressBookList {
+public class AddressBook {
 	//instance variable.
-	String userInputBookName;
-	ArrayList<Contact_info> contact;
+	public String userInputBookName;
+	public ArrayList<Contact> contact;
 	
 	// parameterized constructor
-	public AddressBookList(String userInputBookName) {
+	public AddressBook(String userInputBookName) {
 		this.userInputBookName = userInputBookName;
-		this.contact = new ArrayList<Contact_info>();
+		this.contact = new ArrayList<Contact>();
 	}
 
 	// getters and methods.
@@ -22,11 +22,11 @@ public class AddressBookList {
 		this.userInputBookName = userInputBookName;
 	}
 	
-	public ArrayList<Contact_info> getContact() {
+	public ArrayList<Contact> getContact() {
 		return contact;
 	}
 
-	public void setContact(ArrayList<Contact_info> contact) {
+	public void setContact(ArrayList<Contact> contact) {
 		this.contact = contact;
 	}
 

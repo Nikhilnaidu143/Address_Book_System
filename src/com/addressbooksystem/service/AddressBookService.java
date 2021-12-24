@@ -1,28 +1,17 @@
-package com.addressbooksystem;
+package com.addressbooksystem.service;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Scanner;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.opencsv.CSVWriter;
+import com.addressbooksystem.entity.AddressBook;
+import com.addressbooksystem.entity.Contact;
 
-public class AddressBook {
+public class AddressBookService {
 	static Scanner input = new Scanner(System.in);
-	static ArrayList<AddressBookList> addressBookNameList = new ArrayList<>();
+	static ArrayList<AddressBook> addressBookNameList = new ArrayList<>();
 	
 	// building add contact feature
 	public void addContact() {
@@ -57,7 +46,7 @@ public class AddressBook {
 			System.out.print("Enter E-mail:- ");
 			String email = input.next();
 
-			Contact_info contact = new Contact_info(first, last, add, city, state, zip, phone, email);
+			Contact contact = new Contact(first, last, add, city, state, zip, phone, email);
 
 			if (duplicateCheck(enter , first)) {
 				addressBookNameList.stream()
@@ -79,9 +68,9 @@ public class AddressBook {
 	 * particular Address Book.
 	 **/
 	public boolean duplicateCheck(String enter , String first) {
-		for (AddressBookList addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookNameList) {
 			if (enter.equals(addressBook.userInputBookName)) {
-				for (Contact_info person : addressBook.contact) {
+				for (Contact person : addressBook.contact) {
 					if (first.equals(person.first_Name)) {
 						return false;
 					}
@@ -104,9 +93,9 @@ public class AddressBook {
 		String enter = input.next();
 		System.out.println("\nEnter first name to edit :- ");
 		String name = input.next();
-		for (AddressBookList addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookNameList) {
 			if (enter.equals(addressBook.userInputBookName)) {
-				for (Contact_info person : addressBook.contact) {
+				for (Contact person : addressBook.contact) {
 					if (name.equals(person.first_Name)) {
 						System.out.print("\nSelect option to edit..." + " 1.First_name." + " 2.Last_name." + " 3.Address."
 										+ " 4.City" + " 5.State" + " 6.Zip_code" + " 7.Phone_number" + " 8.Email :- ");
@@ -190,9 +179,9 @@ public class AddressBook {
 		System.out.print("Enter first name to delete contact:- ");
 		String deleteByName = input.next();
 
-		for (AddressBookList addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookNameList) {
 			if (enter.equals(addressBook.userInputBookName)) {
-				for (Contact_info person : addressBook.contact) {
+				for (Contact person : addressBook.contact) {
 					if (deleteByName.equals(person.first_Name)) {
 						addressBook.contact.remove(person);
 						System.out.println("\nSelected contact deleted successfully.");
@@ -227,7 +216,7 @@ public class AddressBook {
 			return;
 		}
 		
-		AddressBookList addressBookObj = new AddressBookList(userInputBookName);
+		AddressBook addressBookObj = new AddressBook(userInputBookName);
 		addressBookNameList.add(addressBookObj);
 
 		System.out.println("New Address Book Name is added to list.");
@@ -249,7 +238,7 @@ public class AddressBook {
 	
 	// display address book
 	public void displayAddressBook() {
-		for (AddressBookList addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookNameList) {
 			System.out.println(addressBook);
 		}
 	}
@@ -266,8 +255,8 @@ public class AddressBook {
 		/***** Creating dictionary of city(keys) and name(values) *****/
 		Dictionary cityWiseDict = new Hashtable();
 
-		for (AddressBookList addressBook : addressBookNameList) {
-			for (Contact_info person : addressBook.contact) {
+		for (AddressBook addressBook : addressBookNameList) {
+			for (Contact person : addressBook.contact) {
 				if (searchCity.equals(person.city)) {
 					cityWiseDict.put(person.first_Name, searchCity);
 				} else {
@@ -289,8 +278,8 @@ public class AddressBook {
 		/***** Creating dictionary of city(keys) and name(values) *****/
 		Dictionary stateWiseDict = new Hashtable();
 
-		for (AddressBookList addressBook : addressBookNameList) {
-			for (Contact_info person : addressBook.contact) {
+		for (AddressBook addressBook : addressBookNameList) {
+			for (Contact person : addressBook.contact) {
 				if (searchState.equals(person.state)) {
 					stateWiseDict.put(person.first_Name, searchState);
 				} else {
@@ -312,8 +301,8 @@ public class AddressBook {
 		System.out.println("Enter city name to count :- ");
 		String countCity = input.next();
 		int count = 0;
-		for (AddressBookList addressBook : addressBookNameList) {
-			for (Contact_info person : addressBook.contact) {
+		for (AddressBook addressBook : addressBookNameList) {
+			for (Contact person : addressBook.contact) {
 				if(countCity.equals(person.city)) {
 					count++;
 				}
@@ -326,8 +315,8 @@ public class AddressBook {
 		System.out.println("Enter state name to count :- ");
 		String countState = input.next();
 		int count = 0;
-		for (AddressBookList addressBook : addressBookNameList) {
-			for (Contact_info person : addressBook.contact) {
+		for (AddressBook addressBook : addressBookNameList) {
+			for (Contact person : addressBook.contact) {
 				if(countState.equals(person.state)) {
 					count++;
 				}
@@ -337,7 +326,7 @@ public class AddressBook {
 	}
 	
 	/*** Finding address Book ***/
-	public AddressBookList findAddressBook() {
+	public AddressBook findAddressBook() {
 		if(addressBookNameList.isEmpty()) {
 			System.out.println("Please create an address book first.");
 			return null;
@@ -345,7 +334,7 @@ public class AddressBook {
 		System.out.println("Please enter the name of the address book :- ");
 		String getAddressBook = input.next();
 		
-		for (AddressBookList addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookNameList) {
 			if(getAddressBook.equals(addressBook.userInputBookName)) {
 				return addressBook; // returning addressBook if found in the address book list.
 			}
@@ -360,7 +349,7 @@ public class AddressBook {
 	 **/
 	public void sortByName_City_State_zip() {
 		
-		AddressBookList addressBook = findAddressBook();
+		AddressBook addressBook = findAddressBook();
 
 		System.out.println("Please select any of the below options." + "\n" + "1. To Sort By Name." + "\n"
 				+ "2. To Sort By City." + "\n" + "3. To Sort By State." + "\n" + "4. To Sort By Zip Code. :- ");
@@ -388,122 +377,6 @@ public class AddressBook {
 			break;
 		default:
 			System.out.println("Please choose valid option.");
-		}
-	}
-	
-	/***
-	 * UC-13:- Ability to Read or Write the Address Book with Persons Contact into a
-	 * File using File IO.
-	 ***/
-	public void writeContactsIntoTextFile() throws IOException {
-		
-		/*** Writing into text file using FILE-IO. ***/
-		FileWriter fileWriter = new FileWriter("AddressBookIO.txt");
-		
-		String stringAddressBookList = addressBookNameList.toString();
-		
-		for(int i = 0; i < stringAddressBookList.length(); i++) {
-			fileWriter.write(stringAddressBookList.charAt(i));
-			fileWriter.flush();
-		}
-		fileWriter.close();
-
-		System.out.println("Data Added into AddressBookIO.txt File.\n");
-	}
-	
-	// reading contacts data from text file.
-	public void readContactsFromTextFile() throws IOException {
-		System.out.println("---------------READING FROM TEXT FILE--------------");
-		
-		/** Writing into file if file does not exist(Empty file is created) in system. **/
-		Path path = Paths.get("AddressBookIO.txt");
-		if(!Files.exists(path)) {
-			System.out.println("OOPS! File is not there. Creating file....");
-			writeContactsIntoTextFile();
-		}
-		
-		FileInputStream fileInputStream = new FileInputStream("AddressBookIO.txt");
-		int i = 0;
-		while((i = fileInputStream.read()) != -1) {
-			System.out.print((char)i);
-		}
-		fileInputStream.close();
-	}
-
-	/**
-	 * UC-14:- Ability to Read/Write the Address Book with Persons Contact as CSV
-	 * File.
-	 **/
-	public void writeContactsIntoCSV() throws IOException {
-
-		List<String[]> stringsAddressBook = new ArrayList<>();
-
-		PrintWriter printWriter = new PrintWriter("AddressBook.csv");	//Used PrintWriter in place of FileWriter.
-		
-		CSVWriter csvWriter = new CSVWriter(printWriter);
-
-		/*** Adding contacts into stringsAddressBook ***/
-		addressBookNameList.forEach(addressBook -> addressBook.contact.stream().forEach(ad -> {
-					stringsAddressBook.add(new String[] { ad.getFirst_Name(), ad.getLast_Name(), 
-					ad.getAddress(), ad.getCity(), ad.getState(),Integer.toString(ad.getZip_code()),
-					Long.toString(ad.getPhone_number()), ad.getEmail() });}));
-		
-		csvWriter.writeAll(stringsAddressBook);    //Writing contacts into AddressBook.csv file.
-		csvWriter.flush();
-		csvWriter.close();
-		
-		System.out.println("Contacts are added to AddressBook.csv file successfully.");
-	}
-	
-	//Reading from CSV.
-	public void readContactsFromCSV() throws IOException {
-		System.out.println("---------------READING FROM CSV FILE--------------");
-		Path path = Paths.get("AddressBook.csv");
-		if(!Files.exists(path)) {
-			System.out.println("OOPS! CSV file is not there. Creating CSV file...");
-			writeContactsIntoCSV();
-		}
-		
-		BufferedReader bufferedReader = new BufferedReader(new FileReader("AddressBook.csv"));
-		String line = "";
-		while ((line = bufferedReader.readLine()) != null) {
-			String[] contact = line.split(",");
-			System.out.println("AddressBook [firstName=" + contact[0] + ", lastName=" + contact[1] + ", address="
-					+ contact[2] + ", cityName=" + contact[3] + ", stateName=" + contact[4] + ", zip=" + contact[5]
-					+ ", phoneNumber=" + contact[6] + "]");
-		}
-		bufferedReader.close();
-	}
-	
-	/**
-	 * UC-15 :- Ability to Read or Write the Address Book with Persons Contact as
-	 * JSON File.
-	 **/
-	public void writeContactsIntoJSON_File() throws IOException {
-		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String output = gson.toJson(addressBookNameList);
-		FileWriter fileWriter = new FileWriter("AddressBook.json");
-		fileWriter.write(output);
-		fileWriter.close();
-		
-		System.out.println("Contacts are added to AddressBook.json file successfully.");
-	}
-	
-	//reading contacts from JSON file.
-	public void readContactsFromJSON_File() throws IOException {
-		System.out.println("---------------READING FROM JSON FILE--------------");
-		
-		Gson gson = new Gson();
-		Path path = Paths.get("AddressBook.json");
-		if(!(Files.exists(path))) {
-			System.out.println("OOPS! JSON file is not there, Creating JSON file..");
-			writeContactsIntoJSON_File();
-		}
-		else {
-			FileReader fileReader = new FileReader("AddressBook.json");
-			Object temp = gson.fromJson(fileReader, Object.class);
-			System.out.println(temp);
 		}
 	}
 }
