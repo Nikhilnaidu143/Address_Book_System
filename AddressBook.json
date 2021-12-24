@@ -13,14 +13,14 @@
         "email": "nikhilnaidu473@gmail.com"
       },
       {
-        "first_Name": "Elon",
-        "last_Name": "Musk",
-        "address": "Star-Base",
-        "city": "Texas",
+        "first_Name": "Bill",
+        "last_Name": "Gates",
+        "address": "New-York",
+        "city": "New-York",
         "state": "USA",
         "zip_code": 400008,
-        "phone_number": 13355544488,
-        "email": "elon-musk@gmail.com"
+        "phone_number": 1325674569,
+        "email": "bill-gates@gmail.com"
       }
     ]
   },
@@ -28,14 +28,14 @@
     "userInputBookName": "ADDRESS-BOOK-2",
     "contact": [
       {
-        "first_Name": "Bill",
-        "last_Name": "Gates",
-        "address": "New-York",
-        "city": "New-York",
+        "first_Name": "Elon",
+        "last_Name": "Musk",
+        "address": "Star-Base",
+        "city": "Texas",
         "state": "USA",
-        "zip_code": 400002,
-        "phone_number": 1333588744,
-        "email": "bill-microsoft@gmail.com"
+        "zip_code": 400009,
+        "phone_number": 1325675844,
+        "email": "elon-musk@gmail.com"
       }
     ]
   }
