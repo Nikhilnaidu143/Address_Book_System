@@ -11,11 +11,11 @@ import com.addressbooksystem.entity.Contact;
 
 public class AddressBookService {
 	static Scanner input = new Scanner(System.in);
-	static ArrayList<AddressBook> addressBookNameList = new ArrayList<>();
+	static ArrayList<AddressBook> addressBookList = new ArrayList<>();
 	
 	// building add contact feature
 	public void addContact() {
-		if (addressBookNameList.isEmpty()) {
+		if (addressBookList.isEmpty()) {
 			System.out.println("\nPlease add Address book to add contacts.");
 			return;
 		} else {
@@ -49,7 +49,7 @@ public class AddressBookService {
 			Contact contact = new Contact(first, last, add, city, state, zip, phone, email);
 
 			if (duplicateCheck(enter , first)) {
-				addressBookNameList.stream()
+				addressBookList.stream()
 				.filter(find -> find.userInputBookName.contains(enter))
 				.forEach(addressBook -> addressBook.contact.add(contact));
 	
@@ -68,7 +68,7 @@ public class AddressBookService {
 	 * particular Address Book.
 	 **/
 	public boolean duplicateCheck(String enter , String first) {
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			if (enter.equals(addressBook.userInputBookName)) {
 				for (Contact person : addressBook.contact) {
 					if (first.equals(person.first_Name)) {
@@ -93,7 +93,7 @@ public class AddressBookService {
 		String enter = input.next();
 		System.out.println("\nEnter first name to edit :- ");
 		String name = input.next();
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			if (enter.equals(addressBook.userInputBookName)) {
 				for (Contact person : addressBook.contact) {
 					if (name.equals(person.first_Name)) {
@@ -179,7 +179,7 @@ public class AddressBookService {
 		System.out.print("Enter first name to delete contact:- ");
 		String deleteByName = input.next();
 
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			if (enter.equals(addressBook.userInputBookName)) {
 				for (Contact person : addressBook.contact) {
 					if (deleteByName.equals(person.first_Name)) {
@@ -217,18 +217,18 @@ public class AddressBookService {
 		}
 		
 		AddressBook addressBookObj = new AddressBook(userInputBookName);
-		addressBookNameList.add(addressBookObj);
+		addressBookList.add(addressBookObj);
 
 		System.out.println("New Address Book Name is added to list.");
 	}
 
 	/*** Checking for unique address Book ***/
 	public boolean checkUnique(String userInputBookName) {
-		if(addressBookNameList.isEmpty()) {
+		if(addressBookList.isEmpty()) {
 			return true;
 		}
-		for(int i = 0; i < addressBookNameList.size(); i++) {
-			String getName = addressBookNameList.get(i).userInputBookName;
+		for(int i = 0; i < addressBookList.size(); i++) {
+			String getName = addressBookList.get(i).userInputBookName;
 			if(getName.equals(userInputBookName)) {
 				return false;
 			}
@@ -238,7 +238,7 @@ public class AddressBookService {
 	
 	// display address book
 	public void displayAddressBook() {
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			System.out.println(addressBook);
 		}
 	}
@@ -255,7 +255,7 @@ public class AddressBookService {
 		/***** Creating dictionary of city(keys) and name(values) *****/
 		Dictionary cityWiseDict = new Hashtable();
 
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			for (Contact person : addressBook.contact) {
 				if (searchCity.equals(person.city)) {
 					cityWiseDict.put(person.first_Name, searchCity);
@@ -278,7 +278,7 @@ public class AddressBookService {
 		/***** Creating dictionary of city(keys) and name(values) *****/
 		Dictionary stateWiseDict = new Hashtable();
 
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			for (Contact person : addressBook.contact) {
 				if (searchState.equals(person.state)) {
 					stateWiseDict.put(person.first_Name, searchState);
@@ -301,7 +301,7 @@ public class AddressBookService {
 		System.out.println("Enter city name to count :- ");
 		String countCity = input.next();
 		int count = 0;
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			for (Contact person : addressBook.contact) {
 				if(countCity.equals(person.city)) {
 					count++;
@@ -315,7 +315,7 @@ public class AddressBookService {
 		System.out.println("Enter state name to count :- ");
 		String countState = input.next();
 		int count = 0;
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			for (Contact person : addressBook.contact) {
 				if(countState.equals(person.state)) {
 					count++;
@@ -327,14 +327,14 @@ public class AddressBookService {
 	
 	/*** Finding address Book ***/
 	public AddressBook findAddressBook() {
-		if(addressBookNameList.isEmpty()) {
+		if(addressBookList.isEmpty()) {
 			System.out.println("Please create an address book first.");
 			return null;
 		}
 		System.out.println("Please enter the name of the address book :- ");
 		String getAddressBook = input.next();
 		
-		for (AddressBook addressBook : addressBookNameList) {
+		for (AddressBook addressBook : addressBookList) {
 			if(getAddressBook.equals(addressBook.userInputBookName)) {
 				return addressBook; // returning addressBook if found in the address book list.
 			}
