@@ -28,7 +28,7 @@ public class FileOperations {
 		/*** Writing into text file using FILE-IO. ***/
 		FileWriter fileWriter = new FileWriter("files/AddressBookIO.txt");
 		
-		String stringAddressBookList = AddressBookService.addressBookNameList.toString();
+		String stringAddressBookList = AddressBookService.addressBookList.toString();
 		
 		for(int i = 0; i < stringAddressBookList.length(); i++) {
 			fileWriter.write(stringAddressBookList.charAt(i));
@@ -63,7 +63,7 @@ public class FileOperations {
 	 * File.
 	 **/
 	public void writeContactsIntoCSV() throws IOException {
-
+  
 		List<String[]> stringsAddressBook = new ArrayList<>();
 
 		PrintWriter printWriter = new PrintWriter("files/AddressBook.csv");	//Used PrintWriter in place of FileWriter.
@@ -74,7 +74,7 @@ public class FileOperations {
 		stringsAddressBook.add(new String[] {"First_Name","Last_Name","Address","City","State","Zip_Code","Phone_Number","E-Mail"});
 		
 		/*** Adding contacts into stringsAddressBook ***/
-		AddressBookService.addressBookNameList.forEach(addressBook -> addressBook.contact.stream().forEach(ad -> {
+		AddressBookService.addressBookList.forEach(addressBook -> addressBook.contact.stream().forEach(ad -> {
 					stringsAddressBook.add(new String[] { ad.getFirst_Name(), ad.getLast_Name(), 
 					ad.getAddress(), ad.getCity(), ad.getState(),Integer.toString(ad.getZip_code()),
 					Long.toString(ad.getPhone_number()), ad.getEmail() });}));
@@ -112,7 +112,7 @@ public class FileOperations {
 	 **/
 	public void writeContactsIntoJSON_File() throws IOException {
 		
-		String output = gson.toJson(AddressBookService.addressBookNameList);
+		String output = gson.toJson(AddressBookService.addressBookList);
 		FileWriter fileWriter = new FileWriter("files/AddressBook.json");
 		fileWriter.write(output);
 		fileWriter.close();
